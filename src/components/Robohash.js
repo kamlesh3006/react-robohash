@@ -3,14 +3,14 @@ import { useState } from 'react';
 
 export default function Robohash() {
     const [input, setInput] = useState("");
-    const [image, setImage] = useState("");
+    const [imageURL, setImageURL] = useState("");
     
     const handleInputChange = (event) => {
         setInput(event.target.value);
     }
 
     const handleOnClick = () => {
-        setImage(`https://robohash.org/${input}`)
+        setImageURL(`https://robohash.org/${input}`)
     }
 
   return (
@@ -36,14 +36,14 @@ export default function Robohash() {
               </button>
             </div>
           </div>
-          {image && 
+          {imageURL && 
           <div className='flex flex-col items-center text-center'>
             <p className='text-3xl font-bold mb-4'>Robot</p>
           <img
             className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
             style={{width : '400px', height : '400px'}}
-            alt="RoboHash Image"
-            src={image}
+            alt="RoboHash imageURL"
+            src={imageURL}
           />
           </div>}
         </div>
