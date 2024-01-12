@@ -12,15 +12,18 @@ export default function Robohash() {
       const images = await fetch(`https://robohash.org/${input}`);
       if (images.ok) {
         const imageUrl = images.url;
-
-        setImageUrls((lastImages) => {
-          if (lastImages.length >= 6) {
-            const [, ...newImages] = lastImages;
-            return [...newImages, imageUrl];
-          } else {
-            return [...lastImages, imageUrl];
-          }
-        })
+        if (!imageUrls.includes(imageUrl)) {
+          setImageUrls((lastImages) => {
+            if (lastImages.length >= 6) {
+              const [, ...newImages] = lastImages;
+              return [...newImages, imageUrl];
+            } else {
+              return [...lastImages, imageUrl];
+            }
+          });
+        } else {
+          console.warn('Image already exists in the list.');
+        }
       } else {
         console.error('Cannot get images.');
       }
@@ -28,6 +31,7 @@ export default function Robohash() {
       console.error(error);
     }
   }
+  
 
   return (
     <div>
